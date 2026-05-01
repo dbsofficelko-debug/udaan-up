@@ -2,214 +2,199 @@
 <html lang="hi">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>उड़ान — युवाओं का डिजिटल मार्गदर्शक</title>
 <link href="https://fonts.googleapis.com/css2?family=Tiro+Devanagari+Hindi:ital@0;1&family=Baloo+2:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --blue-dark:  #0d3b8e;
-    --blue-mid:   #1877F2;
-    --blue-light: #4299e8;
-    --blue-pale:  #eff6ff;
-    --blue-card:  #f0f5ff;
-    --orange:     #F26522;
-    --text-dark:  #0a1f44;
-    --text-mid:   #1e3a5f;
-    --text-light: #6b8aaf;
-    --white:      #ffffff;
-    --border:     #bfdbfe;
-    --radius:     14px;
-  }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: 'Baloo 2', sans-serif; background: var(--blue-pale); color: var(--text-dark); min-height: 100vh; }
+:root{
+  --blue-dark:  #1e3a6e;
+  --blue-mid:   #1877F2;
+  --blue-light: #60a5fa;
+  --blue-pale:  #e8f0fe;
+  --blue-bg:    #dce8f8;
+  --orange:     #F26522;
+  --text-dark:  #1a1e2e;
+  --text-mid:   #3d4a6e;
+  --text-light: #6b7aae;
+  --white:      #ffffff;
+  --border:     #c3d0e8;
+  --radius:     14px;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{height:100%;overflow:hidden;}
+body{
+  font-family:'Baloo 2',sans-serif;
+  background:var(--blue-bg);
+  display:flex;flex-direction:column;
+  height:100dvh;overflow:hidden;
+}
 
-  header { background: linear-gradient(135deg, var(--blue-dark) 0%, var(--blue-mid) 100%); padding: 0 20px; height: 68px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 16px rgba(10,31,68,0.25); }
-  .logo-wrap { display: flex; align-items: center; gap: 12px; }
-  .logo-icon { width: 46px; height: 46px; background: var(--orange); border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 24px; }
-  .logo-text h1 { font-size: 1.3rem; font-weight: 800; color: var(--white); line-height: 1.1; font-family: 'Tiro Devanagari Hindi', serif; }
-  .logo-text p { font-size: 0.72rem; color: rgba(255,255,255,0.7); }
-  .back-btn { background: rgba(255,255,255,0.12); border: 1.5px solid rgba(255,255,255,0.25); color: var(--white); padding: 8px 18px; border-radius: 50px; font-size: 0.82rem; font-family: 'Baloo 2', sans-serif; font-weight: 500; cursor: pointer; text-decoration: none; display: flex; align-items: center; gap: 6px; transition: all 0.2s; }
-  .back-btn:hover { background: rgba(255,255,255,0.22); }
+/* HEADER */
+.hdr{
+  flex-shrink:0;height:64px;
+  background:var(--blue-dark);
+  display:flex;align-items:center;
+  padding:0 14px;gap:12px;
+  box-shadow:0 2px 8px rgba(0,0,0,0.25);z-index:10;
+}
+.hdr-icon{width:42px;height:42px;border-radius:50%;background:var(--orange);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;}
+.hdr-text{flex:1;min-width:0;}
+.hdr-name{font-size:1rem;font-weight:700;color:#fff;line-height:1.1;}
+.hdr-sub{font-size:0.7rem;color:rgba(255,255,255,0.7);}
+.hdr-back{background:rgba(255,255,255,0.1);border:1.5px solid rgba(255,255,255,0.2);color:#fff;padding:6px 14px;border-radius:50px;font-size:0.75rem;font-family:'Baloo 2',sans-serif;font-weight:600;text-decoration:none;white-space:nowrap;transition:background 0.18s;}
+.hdr-back:hover{background:rgba(255,255,255,0.2);}
 
-  .hero { background: linear-gradient(135deg, var(--blue-dark) 0%, var(--blue-mid) 100%); margin: 16px; border-radius: 18px; padding: 28px 24px; position: relative; overflow: hidden; }
-  .hero::before { content: ''; position: absolute; top: -40px; right: -40px; width: 200px; height: 200px; background: radial-gradient(circle, rgba(255,255,255,0.07) 0%, transparent 70%); border-radius: 50%; }
-  .hero::after { content: '🚀'; position: absolute; bottom: -10px; right: 20px; font-size: 80px; opacity: 0.1; }
-  .hero-greeting { font-size: 0.9rem; color: var(--orange); margin-bottom: 8px; font-weight: 700; }
-  .hero-title { font-size: 1.8rem; font-weight: 800; color: var(--white); line-height: 1.15; margin-bottom: 8px; font-family: 'Tiro Devanagari Hindi', serif; }
-  .hero-sub { font-size: 0.88rem; color: rgba(255,255,255,0.75); margin-bottom: 18px; line-height: 1.5; }
-  .hero-badges { display: flex; flex-wrap: wrap; gap: 8px; }
-  .badge { background: rgba(255,255,255,0.13); border: 1px solid rgba(255,255,255,0.22); color: rgba(255,255,255,0.92); padding: 5px 12px; border-radius: 50px; font-size: 0.76rem; font-weight: 500; }
+/* SCROLL AREA */
+.scroll-area{
+  flex:1;overflow-y:auto;overflow-x:hidden;
+  background:var(--blue-bg);
+  background-image:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Cg fill='%231877F2' fill-opacity='0.04'%3E%3Ccircle cx='30' cy='30' r='4'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  -webkit-overflow-scrolling:touch;
+}
+.scroll-area::-webkit-scrollbar{width:4px;}
+.scroll-area::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px;}
 
-  .section-head { font-size: 1rem; font-weight: 700; color: var(--text-dark); margin: 20px 16px 10px; display: flex; align-items: center; gap: 8px; }
+/* CHOOSER */
+.chooser{padding:16px 12px;}
+.chooser-center{text-align:center;}
+.chooser-title{font-size:0.78rem;font-weight:700;color:var(--blue-dark);background:rgba(255,255,255,0.7);border-radius:50px;padding:5px 16px;display:inline-block;margin:0 auto 14px;}
+.id-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;max-width:400px;margin:0 auto;}
+.id-card{background:var(--white);border:2px solid var(--border);border-radius:16px;padding:18px 12px 14px;text-align:center;cursor:pointer;transition:all 0.2s;position:relative;box-shadow:0 1px 4px rgba(0,0,0,0.06);}
+.id-card:active{transform:scale(0.97);}
+.id-card.selected{border-color:var(--blue-mid);background:var(--blue-pale);}
+.id-card.selected::after{content:'✓';position:absolute;top:8px;right:10px;width:20px;height:20px;background:var(--blue-mid);color:#fff;border-radius:50%;font-size:0.65rem;font-weight:700;display:flex;align-items:center;justify-content:center;}
+.id-emoji{font-size:2rem;margin-bottom:6px;display:block;}
+.id-label{font-size:0.9rem;font-weight:700;color:var(--text-dark);}
+.id-desc{font-size:0.68rem;color:var(--text-light);margin-top:2px;}
 
-  .path-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 0 16px; }
-  .path-card { background: var(--white); border: 2px solid var(--border); border-radius: var(--radius); padding: 20px 14px 16px; text-align: center; cursor: pointer; transition: all 0.22s ease; position: relative; }
-  .path-card:hover { border-color: var(--blue-mid); box-shadow: 0 4px 20px rgba(24,119,242,0.14); transform: translateY(-2px); }
-  .path-card.selected { border-color: var(--blue-mid); background: var(--blue-card); }
-  .path-card.selected::after { content: '✓'; position: absolute; top: 10px; right: 12px; width: 22px; height: 22px; background: var(--blue-mid); color: white; border-radius: 50%; font-size: 0.7rem; display: flex; align-items: center; justify-content: center; font-weight: 700; }
-  .path-emoji { font-size: 2.2rem; margin-bottom: 6px; display: block; }
-  .path-label { font-size: 0.95rem; font-weight: 700; color: var(--text-dark); }
-  .path-desc { font-size: 0.73rem; color: var(--text-light); margin-top: 3px; line-height: 1.4; }
+/* MESSAGES */
+.msgs-area{padding:12px 10px;display:flex;flex-direction:column;gap:3px;}
+.date-pill{text-align:center;margin:8px 0;}
+.date-pill span{background:rgba(255,255,255,0.75);font-size:0.68rem;color:var(--text-mid);padding:3px 12px;border-radius:50px;box-shadow:0 1px 2px rgba(0,0,0,0.06);}
 
-  .chat-wrap { margin: 0 16px 16px; display: none; }
-  .chat-wrap.visible { display: block; }
-  .chat-box { background: var(--white); border: 1.5px solid var(--border); border-radius: var(--radius); overflow: hidden; }
-  .chat-header { background: linear-gradient(135deg, var(--blue-dark), var(--blue-mid)); padding: 12px 16px; display: flex; align-items: center; gap: 10px; }
-  .chat-header-ico { font-size: 1.4rem; }
-  .chat-header-text h3 { font-size: 0.92rem; font-weight: 700; color: var(--white); }
-  .chat-header-text p { font-size: 0.72rem; color: rgba(255,255,255,0.7); }
-  .chat-live { display: flex; align-items: center; gap: 5px; margin-left: auto; font-size: 0.72rem; color: #4ade80; font-weight: 600; }
-  .live-dot { width: 7px; height: 7px; background: #4ade80; border-radius: 50%; animation: livePulse 1.5s infinite; }
-  @keyframes livePulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(1.3)} }
+/* BUBBLES */
+.msg-row{display:flex;margin:2px 0;align-items:flex-end;gap:6px;}
+.msg-row.bot{justify-content:flex-start;padding-right:48px;}
+.msg-row.user{justify-content:flex-end;padding-left:48px;}
+.bot-avatar{width:28px;height:28px;border-radius:50%;background:var(--blue-mid);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;align-self:flex-end;}
+.bubble{max-width:78%;padding:8px 12px;border-radius:18px;font-size:0.84rem;line-height:1.6;font-family:'Baloo 2',sans-serif;word-break:break-word;overflow-wrap:break-word;position:relative;}
+.msg-row.bot .bubble{background:#fff;color:var(--text-dark);border-bottom-left-radius:4px;box-shadow:0 1px 2px rgba(0,0,0,0.1);white-space:pre-wrap;}
+.msg-row.user .bubble{background:#d2e3fc;color:#1a1e2e;border-bottom-right-radius:4px;box-shadow:0 1px 2px rgba(0,0,0,0.1);}
+.bubble a{color:var(--blue-mid);text-decoration:underline;word-break:break-all;}
+.bubble-time{font-size:0.62rem;color:rgba(0,0,0,0.35);text-align:right;margin-top:2px;}
 
-  .chat-msgs { padding: 16px; background: var(--blue-pale); min-height: 220px; max-height: 450px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; }
-  .chat-msgs::-webkit-scrollbar { width: 4px; }
-  .chat-msgs::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+.act-row{display:flex;gap:5px;margin-top:6px;flex-wrap:wrap;}
+.act-btn{background:none;border:1px solid var(--border);border-radius:50px;cursor:pointer;font-size:0.72rem;color:var(--text-mid);padding:3px 10px;font-family:'Baloo 2',sans-serif;transition:all 0.15s;}
+.act-btn:hover{border-color:var(--blue-mid);color:var(--blue-dark);}
+.act-emoji{background:none;border:none;cursor:pointer;font-size:15px;padding:2px 3px;}
 
-  .msg-row { display: flex; }
-  .msg-row.bot { justify-content: flex-start; }
-  .msg-row.user { justify-content: flex-end; }
-  .bubble { max-width: 85%; padding: 10px 14px; border-radius: 14px; font-size: 0.85rem; line-height: 1.65; font-family: 'Baloo 2', sans-serif; word-break: break-word; overflow-wrap: break-word; }
-  .msg-row.bot .bubble { background: var(--white); color: var(--text-dark); border: 1px solid var(--border); border-bottom-left-radius: 4px; box-shadow: 0 1px 4px rgba(0,0,0,0.06); white-space: pre-wrap; }
-  .msg-row.user .bubble { background: var(--blue-mid); color: white; border-bottom-right-radius: 4px; }
+.typing{display:flex;gap:5px;align-items:center;padding:4px 2px;}
+.typing span{width:7px;height:7px;background:var(--text-light);border-radius:50%;animation:bounce 0.9s infinite;}
+.typing span:nth-child(2){animation-delay:0.15s;}
+.typing span:nth-child(3){animation-delay:0.3s;}
+@keyframes bounce{0%,60%,100%{transform:translateY(0);opacity:0.4}30%{transform:translateY(-5px);opacity:1}}
 
-  .typing { display: flex; gap: 5px; align-items: center; }
-  .typing span { width: 7px; height: 7px; background: var(--text-light); border-radius: 50%; animation: bounce 0.9s infinite; }
-  .typing span:nth-child(2) { animation-delay: 0.15s; }
-  .typing span:nth-child(3) { animation-delay: 0.3s; }
-  @keyframes bounce { 0%,60%,100%{transform:translateY(0);opacity:0.4} 30%{transform:translateY(-6px);opacity:1} }
+/* DRAFT CARD */
+.draft-card{background:#fff;border-left:4px solid var(--orange);border-radius:12px;padding:14px;margin:6px 0;box-shadow:0 1px 4px rgba(0,0,0,0.08);animation:fadeUp 0.3s ease both;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.draft-title{font-size:0.88rem;font-weight:700;color:var(--blue-dark);margin-bottom:5px;}
+.draft-desc{font-size:0.76rem;color:var(--text-mid);margin-bottom:10px;}
+.draft-btns{display:flex;gap:6px;flex-wrap:wrap;}
+.pact-btn{padding:7px 14px;border-radius:50px;font-size:0.76rem;font-family:'Baloo 2',sans-serif;font-weight:700;cursor:pointer;border:none;text-decoration:none;display:inline-flex;align-items:center;gap:4px;transition:all 0.15s;}
+.pact-primary{background:var(--orange);color:#fff;}
+.pact-blue{background:var(--blue-mid);color:#fff;}
+.pact-warn{background:#fff3e0;color:#e65100;border:1.5px solid #ffcc80;}
 
-  .chat-input-wrap { padding: 10px 12px; background: var(--white); border-top: 1px solid var(--border); display: flex; gap: 8px; align-items: flex-end; overflow: hidden; }
-  .chat-input { flex: 1; min-width: 0; border: 1.5px solid var(--border); border-radius: 10px; padding: 9px 12px; font-size: 0.88rem; font-family: 'Baloo 2', sans-serif; color: var(--text-dark); background: var(--blue-pale); outline: none; resize: none; max-height: 100px; line-height: 1.5; transition: border 0.18s; }
-  .chat-input:focus { border-color: var(--blue-mid); background: white; }
-  .chat-input::placeholder { color: var(--text-light); }
-  .send-btn { width: 40px; height: 40px; background: var(--blue-mid); border: none; border-radius: 10px; cursor: pointer; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.1rem; flex-shrink: 0; transition: all 0.18s; }
-  .send-btn:hover { background: var(--blue-dark); }
-  .send-btn:disabled { background: var(--border); cursor: not-allowed; }
+/* RESET */
+.reset-wrap{text-align:center;padding:10px 16px 20px;}
+.reset-btn{display:inline-flex;align-items:center;gap:6px;background:none;border:1.5px solid var(--border);color:var(--text-light);padding:10px 24px;border-radius:50px;font-size:0.82rem;font-family:'Baloo 2',sans-serif;cursor:pointer;transition:all 0.15s;}
+.reset-btn:hover{border-color:var(--blue-mid);color:var(--blue-mid);}
 
-  .draft-card { background: var(--white); border: 1.5px solid var(--border); border-radius: var(--radius); padding: 16px; border-left: 4px solid var(--blue-mid); animation: fadeUp 0.35s ease both; }
-  @keyframes fadeUp { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
-  .draft-card-title { font-size: 0.95rem; font-weight: 700; color: var(--blue-dark); margin-bottom: 6px; }
-  .draft-card-desc { font-size: 0.82rem; color: var(--text-mid); margin-bottom: 10px; }
-  .draft-actions-row { display: flex; gap: 8px; flex-wrap: wrap; }
-  .dact-btn { padding: 8px 16px; border-radius: 50px; font-size: 0.78rem; font-family: 'Baloo 2', sans-serif; font-weight: 700; cursor: pointer; border: none; text-decoration: none; display: inline-flex; align-items: center; gap: 5px; transition: all 0.18s; }
-  .dact-primary { background: var(--orange); color: white; }
-  .dact-primary:hover { background: #d4541a; }
-  .dact-blue { background: var(--blue-mid); color: white; }
-  .dact-blue:hover { background: var(--blue-dark); }
-  .dact-warn { background: #fff3e0; color: #e65100; border: 1.5px solid #ffcc80; }
+/* INPUT BAR */
+.input-bar{flex-shrink:0;background:var(--blue-bg);padding:8px 10px;padding-bottom:max(8px,env(safe-area-inset-bottom));display:flex;align-items:flex-end;gap:8px;}
+.input-box{flex:1;min-width:0;background:#fff;border:none;border-radius:24px;padding:10px 16px;font-size:0.88rem;font-family:'Baloo 2',sans-serif;color:var(--text-dark);outline:none;resize:none;max-height:120px;line-height:1.5;box-shadow:0 1px 3px rgba(0,0,0,0.1);}
+.input-box::placeholder{color:var(--text-light);}
+.send-btn{width:44px;height:44px;flex-shrink:0;background:var(--blue-mid);border:none;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.1rem;box-shadow:0 2px 8px rgba(24,119,242,0.4);transition:all 0.15s;}
+.send-btn:hover{background:var(--blue-dark);transform:scale(1.05);}
+.send-btn:active{transform:scale(0.95);}
+.send-btn:disabled{background:var(--border);color:#aaa;cursor:not-allowed;box-shadow:none;transform:none;}
 
-  .feedback-row { display: flex; align-items: center; gap: 10px; margin-top: 10px; font-size: 0.78rem; color: var(--text-light); }
-  .fb-btn { background: none; border: 1.5px solid var(--border); border-radius: 50px; padding: 4px 12px; font-size: 0.78rem; cursor: pointer; font-family: 'Baloo 2', sans-serif; transition: all 0.18s; }
-  .fb-btn:hover { border-color: var(--blue-mid); color: var(--blue-mid); }
-
-  .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.55); z-index: 200; align-items: flex-end; justify-content: center; }
-  .modal-overlay.open { display: flex; }
-  .modal { background: white; border-radius: 18px 18px 0 0; width: 100%; max-width: 860px; max-height: 88vh; display: flex; flex-direction: column; transform: translateY(100%); transition: transform 0.3s cubic-bezier(.4,0,.2,1); }
-  .modal-overlay.open .modal { transform: translateY(0); }
-  .modal-handle { width: 40px; height: 4px; background: var(--border); border-radius: 2px; margin: 12px auto 0; flex-shrink: 0; }
-  .modal-header { display: flex; align-items: center; justify-content: space-between; padding: 14px 18px; border-bottom: 1px solid var(--border); flex-shrink: 0; }
-  .modal-title { font-size: 1rem; font-weight: 700; color: var(--blue-dark); }
-  .modal-close { background: var(--blue-pale); border: none; cursor: pointer; width: 30px; height: 30px; border-radius: 50%; font-size: 1rem; color: var(--text-light); display: flex; align-items: center; justify-content: center; }
-  .modal-close:hover { background: var(--border); }
-  .modal-body { flex: 1; overflow-y: auto; padding: 16px 18px 24px; }
-  .draft-text { font-family: 'Baloo 2', sans-serif; font-size: 0.88rem; line-height: 1.9; color: var(--text-dark); background: #f0f5ff; border: 1px solid var(--border); border-radius: 10px; padding: 16px; margin-bottom: 14px; white-space: pre-wrap; }
-  .modal-actions { display: flex; gap: 10px; flex-wrap: wrap; }
-  .copy-btn { flex: 1; padding: 12px; background: var(--blue-mid); color: white; border: none; border-radius: 10px; font-size: 0.9rem; font-family: 'Baloo 2', sans-serif; font-weight: 700; cursor: pointer; transition: all 0.18s; display: flex; align-items: center; justify-content: center; gap: 6px; }
-  .copy-btn:hover { background: var(--blue-dark); }
-  .wa-btn { padding: 12px 18px; background: #25D366; color: white; border: none; border-radius: 10px; font-size: 0.9rem; font-family: 'Baloo 2', sans-serif; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 6px; }
-
-  .reset-btn { display: flex; align-items: center; justify-content: center; gap: 6px; width: calc(100% - 32px); margin: 8px 16px 24px; background: none; border: 1.5px solid var(--border); color: var(--text-light); padding: 12px; border-radius: var(--radius); font-size: 0.85rem; font-family: 'Baloo 2', sans-serif; cursor: pointer; transition: all 0.18s; }
-  .reset-btn:hover { border-color: var(--blue-light); color: var(--blue-mid); }
-
-  footer { background: var(--blue-dark); color: rgba(255,255,255,0.6); text-align: center; padding: 16px; font-size: 0.75rem; line-height: 1.6; }
-  footer strong { color: rgba(255,255,255,0.9); }
-  .divider { height: 1px; background: var(--border); margin: 4px 16px 0; }
+/* MODAL */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.55);z-index:200;align-items:flex-end;justify-content:center;}
+.modal-overlay.open{display:flex;}
+.modal{background:#fff;border-radius:20px 20px 0 0;width:100%;max-width:860px;max-height:88dvh;display:flex;flex-direction:column;transform:translateY(100%);transition:transform 0.3s cubic-bezier(.4,0,.2,1);}
+.modal-overlay.open .modal{transform:translateY(0);}
+.modal-handle{width:40px;height:4px;background:var(--border);border-radius:2px;margin:12px auto 0;flex-shrink:0;}
+.modal-hdr{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;border-bottom:1px solid var(--border);flex-shrink:0;}
+.modal-title{font-size:0.95rem;font-weight:700;color:var(--blue-dark);}
+.modal-close{background:var(--blue-pale);border:none;cursor:pointer;width:28px;height:28px;border-radius:50%;font-size:0.9rem;color:var(--text-light);display:flex;align-items:center;justify-content:center;}
+.modal-body{flex:1;overflow-y:auto;padding:16px 18px 24px;}
+.draft-text{font-family:'Baloo 2',sans-serif;font-size:0.86rem;line-height:1.9;color:var(--text-dark);background:#f0f5ff;border:1px solid var(--border);border-radius:10px;padding:16px;margin-bottom:14px;white-space:pre-wrap;}
+.modal-actions{display:flex;gap:10px;flex-wrap:wrap;}
+.copy-btn{flex:1;padding:12px;background:var(--blue-dark);color:#fff;border:none;border-radius:10px;font-size:0.88rem;font-family:'Baloo 2',sans-serif;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;}
+.wa-btn{padding:12px 16px;background:#25D366;color:#fff;border:none;border-radius:10px;font-size:0.88rem;font-family:'Baloo 2',sans-serif;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:6px;}
 </style>
 </head>
 <body>
 
-<header>
-  <div class="logo-wrap">
-    <div class="logo-icon">🚀</div>
-    <div class="logo-text">
-      <h1>उड़ान</h1>
-      <p>युवाओं का डिजिटल मार्गदर्शक</p>
-    </div>
+<div class="hdr">
+  <div class="hdr-icon">🚀</div>
+  <div class="hdr-text">
+    <div class="hdr-name">उड़ान</div>
+    <div class="hdr-sub" id="hdrSub">युवाओं का डिजिटल मार्गदर्शक</div>
   </div>
-  <a href="https://nyaysahayak.co.in" class="back-btn">← न्यायसहायक</a>
-</header>
-
-<!-- BETA BANNER -->
-<div id="betaBanner" style="background:linear-gradient(135deg,#1e3a6e,#1877F2);color:white;padding:8px 14px;display:flex;align-items:center;justify-content:space-between;font-size:11px;font-family:Baloo 2,sans-serif;">
-  <span>🧪 <strong>बीटा चरण</strong> — निःशुल्क | आपकी राय से उड़ान ऊँची होगी</span>
-  <button onclick="document.getElementById('betaBanner').style.display='none'" style="background:rgba(255,255,255,0.2);border:none;color:white;width:20px;height:20px;border-radius:50%;cursor:pointer;font-size:12px;margin-left:8px;">✕</button>
-</div>
-<div class="hero">
-  <p class="hero-greeting">🙏 नमस्ते! उड़ान में आपका स्वागत है</p>
-  <h2 class="hero-title">आपका सपना,<br>हमारी उड़ान</h2>
-  <p class="hero-sub">सही छात्रवृत्ति · सही नौकरी · सही योजना — बिना दलाल के</p>
-  <div class="hero-badges">
-    <span class="badge">🆓 निःशुल्क</span>
-    <span class="badge">🤖 AI मार्गदर्शक</span>
-    <span class="badge">📋 Application Draft</span>
-    <span class="badge">🔗 Direct Portal</span>
-  </div>
+  <a href="https://nyaysahayak.co.in" class="hdr-back">← न्यायसहायक</a>
 </div>
 
-<div id="step1">
-  <p class="section-head">🎯 आप क्या खोज रहे हैं?</p>
-  <div class="path-grid">
-    <div class="path-card" onclick="startChat(this,'scholarship','छात्रवृत्ति','🎓')">
-      <span class="path-emoji">🎓</span>
-      <div class="path-label">छात्रवृत्ति</div>
-      <div class="path-desc">पढ़ाई के लिए सहायता</div>
-    </div>
-    <div class="path-card" onclick="startChat(this,'naukri','नौकरी','💼')">
-      <span class="path-emoji">💼</span>
-      <div class="path-label">नौकरी</div>
-      <div class="path-desc">UPSSSC · Sewayojan · रोजगार</div>
-    </div>
-    <div class="path-card" onclick="startChat(this,'loan','लोन/व्यवसाय','🏪')">
-      <span class="path-emoji">🏪</span>
-      <div class="path-label">लोन/व्यवसाय</div>
-      <div class="path-desc">Mudra · SVANidhi · Vishwakarma</div>
-    </div>
-    <div class="path-card" onclick="startChat(this,'kaushal','कौशल','🛠️')">
-      <span class="path-emoji">🛠️</span>
-      <div class="path-label">कौशल</div>
-      <div class="path-desc">Skill India · UPSDM · ITI</div>
-    </div>
-  </div>
-</div>
+<div class="scroll-area" id="scrollArea">
 
-<div class="divider" style="margin-top:20px;"></div>
-
-<div class="chat-wrap" id="chatWrap">
-  <p class="section-head" id="chatHead">💬 AI मार्गदर्शक</p>
-  <div class="chat-box">
-    <div class="chat-header">
-      <span class="chat-header-ico">🤖</span>
-      <div class="chat-header-text">
-        <h3>उड़ान AI मार्गदर्शक</h3>
-        <p>आपका profile समझेगा — best option + draft देगा</p>
+  <div class="chooser" id="chooser">
+    <div class="chooser-center">
+      <div class="chooser-title">🎯 आप क्या खोज रहे हैं?</div>
+    </div>
+    <div class="id-grid">
+      <div class="id-card" onclick="startChat(this,'scholarship','छात्रवृत्ति','🎓')">
+        <span class="id-emoji">🎓</span>
+        <div class="id-label">छात्रवृत्ति</div>
+        <div class="id-desc">पढ़ाई के लिए सहायता</div>
       </div>
-      <div class="chat-live"><div class="live-dot"></div>Live</div>
-    </div>
-    <div class="chat-msgs" id="chatMsgs"></div>
-    <div class="chat-input-wrap">
-      <textarea class="chat-input" id="chatInput" rows="1" placeholder="यहाँ लिखें…" maxlength="600"></textarea>
-      <button class="send-btn" id="sendBtn" onclick="sendMsg()">➤</button>
+      <div class="id-card" onclick="startChat(this,'naukri','नौकरी','💼')">
+        <span class="id-emoji">💼</span>
+        <div class="id-label">नौकरी</div>
+        <div class="id-desc">UPSSSC · Sewayojan · रोजगार</div>
+      </div>
+      <div class="id-card" onclick="startChat(this,'loan','लोन/व्यवसाय','🏪')">
+        <span class="id-emoji">🏪</span>
+        <div class="id-label">लोन/व्यवसाय</div>
+        <div class="id-desc">Mudra · SVANidhi · Vishwakarma</div>
+      </div>
+      <div class="id-card" onclick="startChat(this,'kaushal','कौशल','🛠️')">
+        <span class="id-emoji">🛠️</span>
+        <div class="id-label">कौशल</div>
+        <div class="id-desc">Skill India · UPSDM · ITI</div>
+      </div>
     </div>
   </div>
+
+  <div class="msgs-area" id="msgsArea" style="display:none;">
+    <div class="date-pill"><span>आज</span></div>
+  </div>
+
+  <div class="reset-wrap" id="resetWrap" style="display:none;">
+    <button class="reset-btn" onclick="resetAll()">↩ दोबारा शुरू करें</button>
+  </div>
+
 </div>
 
-<button class="reset-btn" id="resetBtn" style="display:none;" onclick="resetAll()">↩ दोबारा शुरू करें</button>
+<div class="input-bar" id="inputBar" style="display:none;">
+  <textarea class="input-box" id="chatInput" rows="1" placeholder="यहाँ लिखें…" maxlength="600"></textarea>
+  <button class="send-btn" id="sendBtn" onclick="sendMsg()">➤</button>
+</div>
 
 <div class="modal-overlay" id="modalOverlay">
   <div class="modal">
     <div class="modal-handle"></div>
-    <div class="modal-header">
+    <div class="modal-hdr">
       <div class="modal-title" id="modalTitle">Application Draft</div>
       <button class="modal-close" onclick="closeModal()">✕</button>
     </div>
@@ -223,295 +208,186 @@
   </div>
 </div>
 
-<footer>
-  <strong>उड़ान</strong> — Dhriti Business Solutions Pvt. Ltd. का एक निःशुल्क युवा सेवा उपकरण<br>
-  यह पोर्टल केवल मार्गदर्शन हेतु है। अंतिम निर्णय संबंधित विभाग का होगा।
-</footer>
-
 <script>
-const API_URL = 'https://nyaysahayak.co.in/.netlify/functions/ai';
 const MODEL = 'claude-haiku-4-5-20251001';
-let currentPath = null;
-let chatHistory = [];
-let currentDraft = '';
+let currentPath = null, chatHistory = [], currentDraft = '';
 
-function getSystemPrompt(pathLabel) {
-  return `आप उड़ान पोर्टल के AI मार्गदर्शक हैं — UP के युवाओं के लिए ${pathLabel} विशेषज्ञ।
+function getNow(){const d=new Date();return d.getHours().toString().padStart(2,'0')+':'+d.getMinutes().toString().padStart(2,'0');}
 
-कठोर नियम:
-1. MAX 4 सवाल — उसके बाद DRAFT अनिवार्य।
-2. DRAFT से पहले user का नाम, पिता का नाम, पता, जनपद जरूर पूछो — फिर letter में भरो।
-3. [brackets] वाले placeholder NEVER मत छोड़ो — हमेशा user की दी गई जानकारी से भरो।
-4. शुद्ध हिंदी लिखो — वर्तनी की गलती नहीं होनी चाहिए।
-   सही: महोदय, निवेदन, प्रार्थना, अध्ययनरत, संलग्न, आज्ञाकारी
-   गलत: महोधय, निवेदान, प्राथना
-2. सीधे answer — 3-4 lines max।
-3. हर scheme के साथ direct clickable portal link दो।
-4. 3rd या 4th message के बाद DRAFT जरूर बनाओ।
+function getSystemPrompt(label){return `आप उड़ान पोर्टल के AI मार्गदर्शक हैं — UP के युवाओं के लिए ${label} विशेषज्ञ।
+नियम:
+1. MAX 4 सवाल — फिर DRAFT अनिवार्य।
+2. DRAFT से पहले user का नाम, पिता का नाम, पता, जनपद जरूर पूछो।
+3. [brackets] वाले placeholder NEVER मत छोड़ो।
+4. शुद्ध हिंदी लिखो।
+5. हर scheme के साथ direct portal link दो।
+6. DRAFT ALWAYS ---DRAFT_START--- से शुरू और ---DRAFT_END--- पर खत्म।
 
-DRAFT format — CRITICAL RULES:
-- ALWAYS ---DRAFT_START--- से शुरू करो
-- ALWAYS ---DRAFT_END--- पर खत्म करो  
-- Scholarship/Loan के लिए formal APPLICATION LETTER बनाओ — guide नहीं
-- markers के बाहर draft content NEVER लिखो
-- Letter format: सेवा में... विषय... महोदय... प्रार्थना... संलग्न दस्तावेज़...
+DRAFT format:
 ---DRAFT_START---
 सेवा में,
-[अधिकारी का पद — जैसे: जिला समाज कल्याण अधिकारी / Principal / Bank Manager],
-[कार्यालय/संस्था का नाम]
+[पद],
+[कार्यालय]
 
-विषय: [योजना का नाम] हेतु आवेदन-पत्र
+विषय: [योजना] हेतु आवेदन-पत्र
 
 महोदय/महोदया,
-
-सविनय निवेदन है कि मैं [नाम], पुत्र/पुत्री [________], आयु [__] वर्ष, निवासी [पता], जनपद [________] हूँ। वर्तमान में मैं [कक्षा/course] में अध्ययनरत/कार्यरत हूँ।
-
-[2 पंक्ति स्थिति विवरण — जैसे: मेरे परिवार की वार्षिक आय ₹[____] है। मैं [योजना] का पात्र हूँ।]
-
-अतः श्रीमान से विनम्र प्रार्थना है कि [योजना नाम] के अंतर्गत मुझे लाभ प्रदान करने की कृपा करें।
+सविनय निवेदन है कि मैं [नाम], पुत्र/पुत्री [________], आयु [__] वर्ष, निवासी [पता], जनपद [________] हूँ।
+[2 पंक्ति स्थिति विवरण]
+अतः [योजना] के अंतर्गत लाभ प्रदान करने की कृपा करें।
 
 संलग्न दस्तावेज़:
 1. आधार कार्ड
 2. [दस्तावेज़]
-3. [दस्तावेज़]
-4. बैंक पासबुक
+3. बैंक पासबुक
 
 🔗 Portal: [URL]
 📞 Helpline: [number]
-⏰ Deadline: [month]
 
 आपका/आपकी आज्ञाकारी,
-[नाम]
-मोबाइल: __________
-दिनांक: ___________
-हस्ताक्षर: ___________
----DRAFT_END---
+[नाम] | मोबाइल: __________ | दिनांक: ___________
+---DRAFT_END---`;}
 
-भाषा: सरल हिंदी। Motivating।`;
-}
-
-const WELCOMES = {
-  scholarship: 'नमस्ते! 🎓 छात्रवृत्ति में सहायता करूँगा।\n\nपहले बताएं — आप अभी किस कक्षा में हैं? और आपकी category क्या है (SC/ST/OBC/General)?',
-  naukri: 'नमस्ते! 💼 सरकारी नौकरी की तैयारी में मदद करूँगा।\n\nआपकी qualification क्या है? (10वीं / 12वीं / Graduation / B.Tech)',
-  loan: 'नमस्ते! 🏪 व्यवसाय के लिए सही loan scheme खोजेंगे।\n\nपहले बताएं — आप कौन सा काम शुरू करना चाहते हैं? या पहले से कोई छोटा काम कर रहे हैं?',
-  kaushal: 'नमस्ते! 🛠️ Skill training में आपकी मदद करूँगा।\n\nआप किस क्षेत्र में skill लेना चाहते हैं?\n• IT / Computer\n• Electrical / Plumbing\n• Tailoring / Fashion\n• Beauty / Wellness\n• कोई और'
+const WELCOMES={
+  scholarship:'नमस्ते! 🎓\n\nछात्रवृत्ति में सहायता करूँगा।\n\nपहले बताएं — अभी किस कक्षा में हैं? Category क्या है (SC/ST/OBC/General)?',
+  naukri:'नमस्ते! 💼\n\nसरकारी नौकरी की तैयारी में मदद करूँगा।\n\nआपकी qualification क्या है? (10वीं / 12वीं / Graduation / B.Tech)',
+  loan:'नमस्ते! 🏪\n\nव्यवसाय के लिए सही loan scheme खोजेंगे।\n\nकौन सा काम शुरू करना चाहते हैं?',
+  kaushal:'नमस्ते! 🛠️\n\nSkill training में आपकी मदद करूँगा।\n\nकिस क्षेत्र में skill लेना चाहते हैं?\n• IT / Computer\n• Electrical / Plumbing\n• Tailoring / Fashion\n• Beauty / Wellness',
 };
+const PORTALS={scholarship:'https://scholarship.up.gov.in',naukri:'https://upsssc.gov.in',loan:'https://mudra.org.in',kaushal:'https://upsdm.gov.in'};
 
-const PORTAL_LINKS = {
-  scholarship: 'https://scholarship.up.gov.in',
-  naukri: 'https://upsssc.gov.in',
-  loan: 'https://mudra.org.in',
-  kaushal: 'https://upsdm.gov.in'
-};
-
-function startChat(card, type, label, emoji) {
-  document.querySelectorAll('.path-card').forEach(c => c.classList.remove('selected'));
+function startChat(card,type,label,emoji){
+  document.querySelectorAll('.id-card').forEach(c=>c.classList.remove('selected'));
   card.classList.add('selected');
-  currentPath = { type, label, emoji };
-  chatHistory = [];
-  currentDraft = '';
-
-  document.getElementById('chatWrap').classList.add('visible');
-  document.getElementById('chatHead').textContent = `${emoji} ${label} — AI मार्गदर्शक`;
-  document.getElementById('resetBtn').style.display = 'flex';
-  document.getElementById('chatMsgs').innerHTML = '';
-
-  addBotMsg(WELCOMES[type] || 'नमस्ते! अपनी जरूरत बताएं।');
-
-  const input = document.getElementById('chatInput');
-  input.onkeydown = e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMsg(); } };
-  input.oninput = () => { input.style.height = 'auto'; input.style.height = Math.min(input.scrollHeight, 100) + 'px'; };
-
-  setTimeout(() => document.getElementById('chatWrap').scrollIntoView({ behavior: 'smooth', block: 'start' }), 200);
-  setTimeout(() => input.focus(), 400);
+  currentPath={type,label,emoji}; chatHistory=[]; currentDraft='';
+  document.getElementById('hdrSub').textContent=emoji+' '+label+' — AI मार्गदर्शक';
+  document.getElementById('chooser').style.display='none';
+  document.getElementById('msgsArea').style.display='flex';
+  document.getElementById('inputBar').style.display='flex';
+  document.getElementById('resetWrap').style.display='block';
+  addBotMsg(WELCOMES[type]||'नमस्ते! अपनी जरूरत बताएं।');
+  const inp=document.getElementById('chatInput');
+  inp.onkeydown=e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendMsg();}};
+  inp.oninput=()=>{inp.style.height='auto';inp.style.height=Math.min(inp.scrollHeight,120)+'px';};
+  setTimeout(()=>{inp.focus();scrollBottom();},300);
 }
 
-async function sendMsg() {
-  const input = document.getElementById('chatInput');
-  const text = input.value.trim();
-  if (!text) return;
+function scrollBottom(){const sa=document.getElementById('scrollArea');sa.scrollTop=sa.scrollHeight;}
 
-  addUserMsg(text);
-  input.value = '';
-  input.style.height = 'auto';
-  chatHistory.push({ role: 'user', content: text });
-
-  const btn = document.getElementById('sendBtn');
-  btn.disabled = true;
-  const typingEl = addTyping();
-
-  try {
-    const resp = await fetch(API_URL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        model: MODEL,
-        max_tokens: 1500,
-        system: getSystemPrompt(currentPath.label),
-        messages: chatHistory
-      })
+async function sendMsg(){
+  const inp=document.getElementById('chatInput');
+  const text=inp.value.trim(); if(!text)return;
+  addUserMsg(text); inp.value=''; inp.style.height='auto';
+  chatHistory.push({role:'user',content:text});
+  const btn=document.getElementById('sendBtn'); btn.disabled=true;
+  const te=addTyping();
+  try{
+    const resp=await fetch('https://nyaysahayak.co.in/.netlify/functions/ai',{
+      method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({model:MODEL,max_tokens:1500,system:getSystemPrompt(currentPath.label),messages:chatHistory})
     });
-    const data = await resp.json();
-    const reply = data.content?.filter(b => b.type === 'text').map(b => b.text).join('') || data.reply || '⚠️ कुछ गड़बड़ हुई।';
-    typingEl.remove();
-    chatHistory.push({ role: 'assistant', content: reply });
-
-    if (reply.includes('---DRAFT_START---') || reply.includes('DRAFT_START')) {
-      const m = reply.match(/---?DRAFT_START---?([\s\S]*?)---?DRAFT_END---?/);
-      if (m) {
-        currentDraft = m[1].trim();
-        const clean = reply.replace(/---DRAFT_START---[\s\S]*?---DRAFT_END---/, '').trim();
-        if (clean) addBotMsg(clean);
-        addDraftCard();
-      }
-    } else {
-      addBotMsg(reply);
-    }
-  } catch(e) {
-    typingEl.remove();
-    addBotMsg('⚠️ कुछ गड़बड़ हुई। कृपया दोबारा कोशिश करें।');
-  }
-  btn.disabled = false;
-  document.getElementById('chatInput').focus();
+    const data=await resp.json();
+    const reply=data.content?.filter(b=>b.type==='text').map(b=>b.text).join('')||data.reply||'⚠️ कुछ गड़बड़ हुई।';
+    te.remove(); chatHistory.push({role:'assistant',content:reply});
+    if(reply.includes('---DRAFT_START---')){
+      const m=reply.match(/---?DRAFT_START---?([\s\S]*?)---?DRAFT_END---?/);
+      if(m){currentDraft=m[1].trim();const clean=reply.replace(/---DRAFT_START---[\s\S]*?---DRAFT_END---/,'').trim();if(clean)addBotMsg(clean);addDraftCard();}
+    } else {addBotMsg(reply);}
+  }catch(e){te.remove();addBotMsg('⚠️ कुछ गड़बड़ हुई। दोबारा कोशिश करें।');}
+  btn.disabled=false; scrollBottom();
 }
 
-function addBotMsg(text, showActions = true) {
-  const msgs = document.getElementById('chatMsgs');
-  const row = document.createElement('div');
-  row.className = 'msg-row bot';
-  const bub = document.createElement('div');
-  bub.className = 'bubble';
-  const cleanText = text
-    .replace(/\*\*(.+?)\*\*/g, '$1')
-    .replace(/\*(.+?)\*/g, '$1')
-    .replace(/#{1,3}\s+/g, '');
-
-  const withLinks = cleanText.replace(/(https?:\/\/[^\s]+)/g, (url) => `<LINK:${url}>`);
-  if (withLinks.includes('<LINK:')) {
-    bub.innerHTML = '';
-    const parts = withLinks.split(/(<LINK:[^>]+>)/);
-    parts.forEach(part => {
-      const m = part.match(/<LINK:(.+)>/);
-      if (m) {
-        const a = document.createElement('a');
-        a.href = m[1]; a.textContent = m[1]; a.target = '_blank';
-        a.style.cssText = 'color:var(--blue-mid);word-break:break-all;';
-        bub.appendChild(a);
-      } else if (part) { bub.appendChild(document.createTextNode(part)); }
-    });
-  } else { bub.textContent = cleanText; }
-
-  if (showActions) {
-    const actRow = document.createElement('div');
-    actRow.style.cssText = 'display:flex;gap:4px;margin-top:8px;flex-wrap:wrap;align-items:center;';
-
-    const copyBtn = document.createElement('button');
-    copyBtn.style.cssText = 'background:none;border:1px solid var(--border);border-radius:20px;cursor:pointer;font-size:11px;color:var(--text-light);padding:3px 10px;font-family:Baloo 2,sans-serif;';
-    copyBtn.textContent = '📋 Copy';
-    copyBtn.onclick = () => { navigator.clipboard.writeText(text); copyBtn.textContent = '✓ Copied!'; setTimeout(() => copyBtn.textContent = '📋 Copy', 2000); };
-
-    const waBtn = document.createElement('button');
-    waBtn.style.cssText = 'background:none;border:1px solid var(--border);border-radius:20px;cursor:pointer;font-size:11px;color:var(--text-light);padding:3px 10px;font-family:Baloo 2,sans-serif;';
-    waBtn.textContent = '📤 Share';
-    waBtn.onclick = () => { const s = text.length > 300 ? text.slice(0,297)+'…' : text; window.open('https://wa.me/?text='+encodeURIComponent('उड़ान से:\n\n'+s+'\n\nudaan-up.netlify.app'),'_blank'); };
-
-    const upBtn = document.createElement('button');
-    upBtn.style.cssText = 'background:none;border:none;cursor:pointer;font-size:13px;padding:2px 4px;';
-    upBtn.textContent = '👍';
-    upBtn.onclick = () => { upBtn.textContent = '✅'; upBtn.disabled = true; downBtn.disabled = true; };
-
-    const downBtn = document.createElement('button');
-    downBtn.style.cssText = 'background:none;border:none;cursor:pointer;font-size:13px;padding:2px 4px;';
-    downBtn.textContent = '👎';
-    downBtn.onclick = () => { downBtn.textContent = '❌'; upBtn.disabled = true; downBtn.disabled = true; setTimeout(() => addBotMsg('क्या सही नहीं लगा? बताएं।', false), 300); };
-
-    actRow.appendChild(copyBtn);
-    actRow.appendChild(waBtn);
-    actRow.appendChild(upBtn);
-    actRow.appendChild(downBtn);
-    bub.appendChild(actRow);
-  }
-
-  row.appendChild(bub);
-  msgs.appendChild(row);
-  msgs.scrollTop = msgs.scrollHeight;
+function renderText(text,el){
+  const clean=text.replace(/\*\*(.+?)\*\*/g,'$1').replace(/\*(.+?)\*/g,'$1').replace(/#{1,3}\s+/g,'');
+  const parts=clean.split(/(https?:\/\/[^\s]+)/g);
+  parts.forEach(part=>{
+    if(/^https?:\/\//.test(part)){const a=document.createElement('a');a.href=part;a.textContent=part;a.target='_blank';el.appendChild(a);}
+    else if(part){el.appendChild(document.createTextNode(part));}
+  });
 }
 
-function addUserMsg(text) {
-  const msgs = document.getElementById('chatMsgs');
-  const row = document.createElement('div');
-  row.className = 'msg-row user';
-  const bub = document.createElement('div');
-  bub.className = 'bubble';
-  bub.textContent = text;
-  row.appendChild(bub);
-  msgs.appendChild(row);
-  msgs.scrollTop = msgs.scrollHeight;
+function addBotMsg(text){
+  const area=document.getElementById('msgsArea');
+  const row=document.createElement('div'); row.className='msg-row bot';
+  const av=document.createElement('div'); av.className='bot-avatar'; av.textContent='🤖';
+  const bub=document.createElement('div'); bub.className='bubble';
+  renderText(text,bub);
+  const timeEl=document.createElement('div'); timeEl.className='bubble-time'; timeEl.textContent=getNow(); bub.appendChild(timeEl);
+  const actRow=document.createElement('div'); actRow.className='act-row';
+  const cpBtn=document.createElement('button'); cpBtn.className='act-btn'; cpBtn.textContent='📋 Copy';
+  cpBtn.onclick=()=>{navigator.clipboard.writeText(text);cpBtn.textContent='✓ Copied!';setTimeout(()=>cpBtn.textContent='📋 Copy',2000);};
+  const waBtn=document.createElement('button'); waBtn.className='act-btn'; waBtn.textContent='📤 Share';
+  waBtn.onclick=()=>{const s=text.length>300?text.slice(0,297)+'…':text;window.open('https://wa.me/?text='+encodeURIComponent('उड़ान से:\n\n'+s+'\n\nudaan-up.netlify.app'),'_blank');};
+  const upBtn=document.createElement('button'); upBtn.className='act-emoji'; upBtn.textContent='👍';
+  const dnBtn=document.createElement('button'); dnBtn.className='act-emoji'; dnBtn.textContent='👎';
+  upBtn.onclick=()=>{upBtn.textContent='✅';upBtn.disabled=true;dnBtn.disabled=true;};
+  dnBtn.onclick=()=>{dnBtn.textContent='❌';upBtn.disabled=true;dnBtn.disabled=true;setTimeout(()=>addBotMsg('क्या सही नहीं लगा? बताएं।'),300);};
+  actRow.appendChild(cpBtn);actRow.appendChild(waBtn);actRow.appendChild(upBtn);actRow.appendChild(dnBtn);
+  bub.appendChild(actRow);
+  row.appendChild(av); row.appendChild(bub);
+  area.appendChild(row); scrollBottom();
 }
 
-function addTyping() {
-  const msgs = document.getElementById('chatMsgs');
-  const row = document.createElement('div');
-  row.className = 'msg-row bot';
-  row.innerHTML = '<div class="bubble"><div class="typing"><span></span><span></span><span></span></div></div>';
-  msgs.appendChild(row);
-  msgs.scrollTop = msgs.scrollHeight;
+function addUserMsg(text){
+  const area=document.getElementById('msgsArea');
+  const row=document.createElement('div'); row.className='msg-row user';
+  const bub=document.createElement('div'); bub.className='bubble'; bub.textContent=text;
+  const timeEl=document.createElement('div'); timeEl.className='bubble-time'; timeEl.textContent=getNow()+' ✓✓'; bub.appendChild(timeEl);
+  row.appendChild(bub); area.appendChild(row); scrollBottom();
+}
+
+function addTyping(){
+  const area=document.getElementById('msgsArea');
+  const row=document.createElement('div'); row.className='msg-row bot';
+  const av=document.createElement('div'); av.className='bot-avatar'; av.textContent='🤖';
+  const bub=document.createElement('div'); bub.className='bubble';
+  bub.innerHTML='<div class="typing"><span></span><span></span><span></span></div>';
+  row.appendChild(av); row.appendChild(bub); area.appendChild(row); scrollBottom();
   return row;
 }
 
-function addDraftCard() {
-  const msgs = document.getElementById('chatMsgs');
-  const card = document.createElement('div');
-  card.className = 'draft-card';
-  const portalUrl = PORTAL_LINKS[currentPath.type] || 'https://up.gov.in';
-  card.innerHTML = `
-    <div class="draft-card-title">📋 ${currentPath.label} — Draft/Roadmap तैयार!</div>
-    <div class="draft-card-desc">आपकी profile के अनुसार तैयार है। Copy करें और portal पर apply करें।</div>
-    <div class="draft-actions-row">
-      <button class="dact-btn dact-primary" onclick="openModal()">📋 Draft देखें</button>
-      <a href="${portalUrl}" target="_blank" class="dact-btn dact-blue">🔗 Portal खोलें</a>
-      <a href="https://jansunwai.up.nic.in" target="_blank" class="dact-btn dact-warn">⚠️ शिकायत</a>
-    </div>
-    <div class="feedback-row">
-      सहायक था?
-      <button class="fb-btn" onclick="this.textContent='✅ धन्यवाद!';this.disabled=true;">👍 हाँ</button>
-      <button class="fb-btn" onclick="feedbackNo(this)">👎 नहीं</button>
+function addDraftCard(){
+  const area=document.getElementById('msgsArea');
+  const card=document.createElement('div'); card.className='draft-card';
+  const portalUrl=PORTALS[currentPath.type]||'https://up.gov.in';
+  card.innerHTML=`<div class="draft-title">📋 ${currentPath.label} — Draft तैयार!</div>
+    <div class="draft-desc">आपकी profile के अनुसार तैयार है। Copy करें और portal पर apply करें।</div>
+    <div class="draft-btns">
+      <button class="pact-btn pact-primary" onclick="openModal()">📋 Draft देखें</button>
+      <a href="${portalUrl}" target="_blank" class="pact-btn pact-blue">🔗 Portal</a>
+      <a href="https://jansunwai.up.nic.in" target="_blank" class="pact-btn pact-warn">⚠️ शिकायत</a>
     </div>`;
-  msgs.appendChild(card);
-  msgs.scrollTop = msgs.scrollHeight;
+  area.appendChild(card); scrollBottom();
 }
 
-function feedbackNo(btn) {
-  btn.textContent = '❌';
-  btn.disabled = true;
-  setTimeout(() => addBotMsg('क्या सही नहीं लगा? बताएं — दोबारा कोशिश करूँगा।'), 300);
-}
-
-function openModal() {
-  document.getElementById('draftText').textContent = currentDraft;
-  document.getElementById('modalTitle').textContent = `${currentPath.emoji} ${currentPath.label} — Draft`;
+function openModal(){
+  document.getElementById('draftText').textContent=currentDraft;
+  document.getElementById('modalTitle').textContent=`${currentPath.emoji} ${currentPath.label} — Draft`;
   document.getElementById('modalOverlay').classList.add('open');
 }
-function closeModal() { document.getElementById('modalOverlay').classList.remove('open'); }
-function copyDraft() {
+function closeModal(){document.getElementById('modalOverlay').classList.remove('open');}
+function copyDraft(){
   navigator.clipboard.writeText(currentDraft);
-  const btn = document.querySelector('.copy-btn');
-  btn.textContent = '✅ Copy हो गया!';
-  setTimeout(() => btn.innerHTML = '📋 Copy करें', 2000);
+  const btn=document.querySelector('.copy-btn'); btn.textContent='✅ Copy हो गया!';
+  setTimeout(()=>btn.textContent='📋 Copy करें',2000);
 }
-function shareDraft() {
-  const short = currentDraft.length > 400 ? currentDraft.slice(0, 397) + '…' : currentDraft;
-  window.open('https://wa.me/?text=' + encodeURIComponent('उड़ान — Draft:\n\n' + short), '_blank');
+function shareDraft(){
+  const s=currentDraft.length>400?currentDraft.slice(0,397)+'…':currentDraft;
+  window.open('https://wa.me/?text='+encodeURIComponent('उड़ान — Draft:\n\n'+s),'_blank');
 }
-function resetAll() {
-  currentPath = null; chatHistory = []; currentDraft = '';
-  document.querySelectorAll('.path-card').forEach(c => c.classList.remove('selected'));
-  document.getElementById('chatWrap').classList.remove('visible');
-  document.getElementById('resetBtn').style.display = 'none';
-  document.getElementById('chatMsgs').innerHTML = '';
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+function resetAll(){
+  currentPath=null;chatHistory=[];currentDraft='';
+  document.querySelectorAll('.id-card').forEach(c=>c.classList.remove('selected'));
+  document.getElementById('chooser').style.display='block';
+  document.getElementById('msgsArea').style.display='none';
+  document.getElementById('msgsArea').innerHTML='<div class="date-pill"><span>आज</span></div>';
+  document.getElementById('inputBar').style.display='none';
+  document.getElementById('resetWrap').style.display='none';
+  document.getElementById('hdrSub').textContent='युवाओं का डिजिटल मार्गदर्शक';
+  document.getElementById('scrollArea').scrollTop=0;
 }
-document.getElementById('modalOverlay').addEventListener('click', function(e) { if (e.target === this) closeModal(); });
+document.getElementById('modalOverlay').addEventListener('click',function(e){if(e.target===this)closeModal();});
+document.getElementById('chatInput').addEventListener('focus',()=>setTimeout(scrollBottom,350));
 </script>
 </body>
 </html>
