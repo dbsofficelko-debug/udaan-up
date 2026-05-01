@@ -311,21 +311,40 @@ function addBotMsg(text){
   const row=document.createElement('div'); row.className='msg-row bot';
   const av=document.createElement('div'); av.className='bot-avatar'; av.textContent='🤖';
   const bub=document.createElement('div'); bub.className='bubble';
-  renderText(text,bub);
-  const timeEl=document.createElement('div'); timeEl.className='bubble-time'; timeEl.textContent=getNow(); bub.appendChild(timeEl);
-  const actRow=document.createElement('div'); actRow.className='act-row';
-  const cpBtn=document.createElement('button'); cpBtn.className='act-btn'; cpBtn.textContent='📋 Copy';
-  cpBtn.onclick=()=>{navigator.clipboard.writeText(text);cpBtn.textContent='✓ Copied!';setTimeout(()=>cpBtn.textContent='📋 Copy',2000);};
-  const waBtn=document.createElement('button'); waBtn.className='act-btn'; waBtn.textContent='📤 Share';
-  waBtn.onclick=()=>{const s=text.length>300?text.slice(0,297)+'…':text;window.open('https://wa.me/?text='+encodeURIComponent('उड़ान से:\n\n'+s+'\n\nudaan-up.netlify.app'),'_blank');};
-  const upBtn=document.createElement('button'); upBtn.className='act-emoji'; upBtn.textContent='👍';
-  const dnBtn=document.createElement('button'); dnBtn.className='act-emoji'; dnBtn.textContent='👎';
-  upBtn.onclick=()=>{upBtn.textContent='✅';upBtn.disabled=true;dnBtn.disabled=true;};
-  dnBtn.onclick=()=>{dnBtn.textContent='❌';upBtn.disabled=true;dnBtn.disabled=true;setTimeout(()=>addBotMsg('क्या सही नहीं लगा? बताएं।'),300);};
-  actRow.appendChild(cpBtn);actRow.appendChild(waBtn);actRow.appendChild(upBtn);actRow.appendChild(dnBtn);
-  bub.appendChild(actRow);
   row.appendChild(av); row.appendChild(bub);
   area.appendChild(row); scrollBottom();
+  
+  const chars=text.split('');
+  let i=0, rendered='';
+  const tLen=text.length;
+  const bd=tLen<150?12:tLen<500?7:4;
+  
+  function tick(){
+    if(i>=chars.length){
+      bub.innerHTML=''; renderText(rendered,bub);
+      const timeEl=document.createElement('div'); timeEl.className='bubble-time'; timeEl.textContent=getNow()+'  '; bub.appendChild(timeEl);
+      const actRow=document.createElement('div'); actRow.className='act-row';
+      const cpBtn=document.createElement('button'); cpBtn.className='act-btn'; cpBtn.textContent='📋 Copy';
+      cpBtn.onclick=()=>{navigator.clipboard.writeText(text);cpBtn.textContent='✓ Copied!';setTimeout(()=>cpBtn.textContent='📋 Copy',2000);};
+      const waBtn=document.createElement('button'); waBtn.className='act-btn'; waBtn.textContent='📤 Share';
+      waBtn.onclick=()=>{const s=text.length>300?text.slice(0,297)+'…':text;window.open('https://wa.me/?text='+encodeURIComponent('उड़ान से:\n\n'+s+'\n\nudaan-up.netlify.app'),'_blank');};
+      const upBtn=document.createElement('button'); upBtn.className='act-emoji'; upBtn.textContent='👍';
+      const dnBtn=document.createElement('button'); dnBtn.className='act-emoji'; dnBtn.textContent='👎';
+      upBtn.onclick=()=>{upBtn.textContent='✅';upBtn.disabled=true;dnBtn.disabled=true;};
+      dnBtn.onclick=()=>{dnBtn.textContent='❌';upBtn.disabled=true;dnBtn.disabled=true;setTimeout(()=>addBotMsg('क्या सही नहीं लगा? बताएं।'),300);};
+      actRow.appendChild(cpBtn);actRow.appendChild(waBtn);actRow.appendChild(upBtn);actRow.appendChild(dnBtn);
+      bub.appendChild(actRow);
+      scrollBottom(); return;
+    }
+    const batch=Math.min(6,chars.length-i);
+    for(let b=0;b<batch;b++){rendered+=chars[i];i++;}
+    bub.textContent=rendered;
+    const sa=document.getElementById('scrollArea');
+    if(sa.scrollHeight-sa.scrollTop-sa.clientHeight<120) scrollBottom();
+    const lc=rendered.trim().slice(-1);
+    setTimeout(tick,/[।.?!]/.test(lc)?bd*8:bd);
+  }
+  requestAnimationFrame(tick);
 }
 
 function addUserMsg(text){
