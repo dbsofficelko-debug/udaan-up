@@ -186,7 +186,7 @@ body{
 
 </div>
 
-<div class="input-bar" id="inputBar" style="display:none;">
+<div class="input-bar" id="inputBar" style="display:none;width:100%;max-width:100%;overflow:hidden;box-sizing:border-box;">
   <textarea class="input-box" id="chatInput" rows="1" placeholder="यहाँ लिखें…" maxlength="600"></textarea>
   <button class="send-btn" id="sendBtn" onclick="sendMsg()">➤</button>
 </div>
@@ -263,7 +263,7 @@ function startChat(card,type,label,emoji){
   document.getElementById('hdrSub').textContent=emoji+' '+label+' — AI मार्गदर्शक';
   document.getElementById('chooser').style.display='none';
   document.getElementById('msgsArea').style.display='flex';
-  document.getElementById('inputBar').style.display='flex';
+  const ib=document.getElementById('inputBar');ib.style.display='flex';ib.style.overflow='hidden';ib.style.width='100%';ib.style.maxWidth='100%';ib.style.boxSizing='border-box';
   document.getElementById('resetWrap').style.display='block';
   addBotMsg(WELCOMES[type]||'नमस्ते! अपनी जरूरत बताएं।');
   const inp=document.getElementById('chatInput');
