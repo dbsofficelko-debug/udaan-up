@@ -323,8 +323,8 @@ async function sendMsg() {
     typingEl.remove();
     chatHistory.push({ role: 'assistant', content: reply });
 
-    if (reply.includes('---DRAFT_START---')) {
-      const m = reply.match(/---DRAFT_START---([\s\S]*?)---DRAFT_END---/);
+    if (reply.includes('---DRAFT_START---') || reply.includes('DRAFT_START')) {
+      const m = reply.match(/---?DRAFT_START---?([\s\S]*?)---?DRAFT_END---?/);
       if (m) {
         currentDraft = m[1].trim();
         const clean = reply.replace(/---DRAFT_START---[\s\S]*?---DRAFT_END---/, '').trim();
