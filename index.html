@@ -69,7 +69,7 @@
   .msg-row { display: flex; }
   .msg-row.bot { justify-content: flex-start; }
   .msg-row.user { justify-content: flex-end; }
-  .bubble { max-width: 85%; padding: 10px 14px; border-radius: 14px; font-size: 0.85rem; line-height: 1.65; font-family: 'Baloo 2', sans-serif; }
+  .bubble { max-width: 85%; padding: 10px 14px; border-radius: 14px; font-size: 0.85rem; line-height: 1.65; font-family: 'Baloo 2', sans-serif; word-break: break-word; overflow-wrap: break-word; }
   .msg-row.bot .bubble { background: var(--white); color: var(--text-dark); border: 1px solid var(--border); border-bottom-left-radius: 4px; box-shadow: 0 1px 4px rgba(0,0,0,0.06); white-space: pre-wrap; }
   .msg-row.user .bubble { background: var(--blue-mid); color: white; border-bottom-right-radius: 4px; }
 
@@ -79,8 +79,8 @@
   .typing span:nth-child(3) { animation-delay: 0.3s; }
   @keyframes bounce { 0%,60%,100%{transform:translateY(0);opacity:0.4} 30%{transform:translateY(-6px);opacity:1} }
 
-  .chat-input-wrap { padding: 10px 12px; background: var(--white); border-top: 1px solid var(--border); display: flex; gap: 8px; align-items: flex-end; }
-  .chat-input { flex: 1; border: 1.5px solid var(--border); border-radius: 10px; padding: 9px 12px; font-size: 0.88rem; font-family: 'Baloo 2', sans-serif; color: var(--text-dark); background: var(--blue-pale); outline: none; resize: none; max-height: 100px; line-height: 1.5; transition: border 0.18s; }
+  .chat-input-wrap { padding: 10px 12px; background: var(--white); border-top: 1px solid var(--border); display: flex; gap: 8px; align-items: flex-end; overflow: hidden; }
+  .chat-input { flex: 1; min-width: 0; border: 1.5px solid var(--border); border-radius: 10px; padding: 9px 12px; font-size: 0.88rem; font-family: 'Baloo 2', sans-serif; color: var(--text-dark); background: var(--blue-pale); outline: none; resize: none; max-height: 100px; line-height: 1.5; transition: border 0.18s; }
   .chat-input:focus { border-color: var(--blue-mid); background: white; }
   .chat-input::placeholder { color: var(--text-light); }
   .send-btn { width: 40px; height: 40px; background: var(--blue-mid); border: none; border-radius: 10px; cursor: pointer; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.1rem; flex-shrink: 0; transition: all 0.18s; }
