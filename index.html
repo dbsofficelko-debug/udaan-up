@@ -356,7 +356,25 @@ function addBotMsg(text, showActions = true) {
   row.className = 'msg-row bot';
   const bub = document.createElement('div');
   bub.className = 'bubble';
-  bub.textContent = text;
+  const cleanText = text
+    .replace(/\*\*(.+?)\*\*/g, '$1')
+    .replace(/\*(.+?)\*/g, '$1')
+    .replace(/#{1,3}\s+/g, '');
+
+  const withLinks = cleanText.replace(/(https?:\/\/[^\s]+)/g, (url) => `<LINK:${url}>`);
+  if (withLinks.includes('<LINK:')) {
+    bub.innerHTML = '';
+    const parts = withLinks.split(/(<LINK:[^>]+>)/);
+    parts.forEach(part => {
+      const m = part.match(/<LINK:(.+)>/);
+      if (m) {
+        const a = document.createElement('a');
+        a.href = m[1]; a.textContent = m[1]; a.target = '_blank';
+        a.style.cssText = 'color:var(--blue-mid);word-break:break-all;';
+        bub.appendChild(a);
+      } else if (part) { bub.appendChild(document.createTextNode(part)); }
+    });
+  } else { bub.textContent = cleanText; }
 
   if (showActions) {
     const actRow = document.createElement('div');
